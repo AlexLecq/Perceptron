@@ -5,6 +5,8 @@
 
 <script>
 
+import '../../core/percetron';
+
 export default {
     
 }
