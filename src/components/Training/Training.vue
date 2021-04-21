@@ -7,17 +7,19 @@
           :key="input.property"
           :label="input.label"
         >
-          <b-input
-            v-model="models[input.property]"
-            type="is-info"
-          >
-          </b-input>
+          <b-input v-model="models[input.property]" type="is-info"> </b-input>
         </b-field>
         <b-field label="Training data">
-          <textarea class="textarea" v-model="models['trainingData']" placeholder="e.g 0 0 = 1"></textarea>
+          <textarea
+            class="textarea"
+            v-model="models['trainingData']"
+            placeholder="e.g 0 0 = 1"
+          ></textarea>
         </b-field>
       </b-menu-list>
-      <b-button  style="margin-top: 1em;" type="is-link">Train</b-button>
+      <b-button @click="train()" style="margin-top: 1em" type="is-link"
+        >Train</b-button
+      >
     </b-menu>
   </section>
 </template>
@@ -32,6 +34,8 @@
       
       
       */
+import Perceptron from "../../core/percetron";
+
 export default {
   data() {
     return {
@@ -53,9 +57,33 @@ export default {
           property: "trainingCoef",
         },
       ],
-      models: {},
+      models: {
+        trainingData: "1 1 = 1\n1 0 = 1\n0 1 = 1\n0 0 = 0",
+        trainingCoef: 0.1,
+      },
     };
-  }
+  },
+  methods: {
+    train: function () {
+      const weights = [];
+      for (let i = 0; i < 3; i++) weights.push(Math.random() * 2 - 1);
+
+      Perceptron.train(
+        this.models["trainingData"],
+        weights,
+        this.models["maxIter"],
+        this.models["minError"],
+        this.models["threshold"],
+        this.models["trainingCoef"]
+      );
+      this.$buefy.toast.open({
+        duration: 3000,
+        message: `Training over`,
+        position: "is-top",
+        type: "is-success",
+      });
+    },
+  },
 };
 </script>
 

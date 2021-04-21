@@ -8,23 +8,21 @@
     </section>
     <div id="main">
       <Training></Training>
-      <Main></Main>
       <Eval></Eval>
     </div>
   </div>
 </template>
 
 <script>
-import Main from "./components/Main/Main";
 import Training from "./components/Training/Training";
 import Eval from "./components/Eval/Eval";
+
 export default {
   name: "App",
   components: {
-    Main,
     Training,
-    Eval
-  },
+    Eval,
+  }
 };
 </script>
 
@@ -34,12 +32,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin: 5% 8% 0 8%;
+  margin: 2% 8% 0 8%;
 }
 
 #main {
   display: grid;
-  grid-template-columns: 0.3fr 1fr 0.2fr;
+  grid-template-columns: 1fr 1fr;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
