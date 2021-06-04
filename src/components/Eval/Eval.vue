@@ -51,6 +51,16 @@ export default {
         });
         return;
       }
+
+      if((this.models["x0"] !== '0' && this.models["x0"] !== '1') || (this.models["x1"] !== '0' && this.models["x1"] !== '1')){
+        this.$buefy.toast.open({
+          duration: 3000,
+          message: `data must be equal to 0 or 1`,
+          position: "is-top",
+          type: "is-danger",
+        });
+        return;
+      }
       this.result = Perceptron.evaluate(
         [this.models["x0"], this.models["x1"], 1],
         weights,
